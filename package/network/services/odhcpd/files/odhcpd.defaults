@@ -1,13 +1,25 @@
 #!/bin/sh
-uci -q get dhcp.odhcpd && exit 0
-touch /etc/config/dhcp
+uci -q get odhcpd.odhcpd && exit 0
+touch /etc/config/odhcpd
 
 uci batch <<EOF
-set dhcp.odhcpd=odhcpd
-set dhcp.odhcpd.maindhcp=0
-set dhcp.odhcpd.leasefile=/tmp/hosts/odhcpd
-set dhcp.odhcpd.leasetrigger=/usr/sbin/odhcpd-update
-set dhcp.lan.dhcpv6=server
-set dhcp.lan.ra=server
-commit dhcp
+set odhcpd.odhcpd=odhcpd
+set odhcpd.odhcpd.maindhcp=0
+set odhcpd.odhcpd.leasefile=/tmp/hosts/odhcpd
+set odhcpd.odhcpd.leasetrigger=/usr/sbin/odhcpd-update
+set odhcpd.lan=dhcp
+set odhcpd.lan.interface=lan
+set odhcpd.lan.dhcpv6=relay
+set odhcpd.lan.ra=relay
+set odhcpd.lan.ndp=relay
+set odhcpd.wan=dhcp
+set odhcpd.wan.interface=wan
+set odhcpd.wan.ignore=1
+set odhcpd.wan6=dhcp
+set odhcpd.wan6.interface=wan
+set odhcpd.wan6.master=1
+set odhcpd.wan6.dhcpv6=relay
+set odhcpd.wan6.ra=relay
+set odhcpd.wan6.ndp=relay
+commit odhcpd
 EOF

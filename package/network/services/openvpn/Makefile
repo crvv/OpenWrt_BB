@@ -66,13 +66,7 @@ CONFIGURE_VARS += \
 
 define Build/Configure
 	$(call Build/Configure/Default, \
-		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_SMALL),--enable-small) \
-		--disable-selinux \
 		--disable-systemd \
-		--disable-plugins \
-		--disable-debug \
-		--disable-eurephia \
-		--disable-pkcs11 \
 		--enable-password-save \
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_LZO),--enable,--disable)-lzo \
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_X509_ALT_USERNAME),enable,disable-x509-alt-username)-ssl \
