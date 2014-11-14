@@ -1,2 +1,3 @@
-Add Shadowsocks-libev
+Add Shadowsocks-libev, default ss-redir
 Change odhcpd's profile /etc/config/dhcp to /etc/config/odhcpd
+Use newest odhcpd
