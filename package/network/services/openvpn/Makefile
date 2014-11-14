@@ -67,6 +67,8 @@ CONFIGURE_VARS += \
 define Build/Configure
 	$(call Build/Configure/Default, \
 		--disable-systemd \
+		--disable-selinux \
+		--disable-debug \
 		--enable-password-save \
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_LZO),--enable,--disable)-lzo \
 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_X509_ALT_USERNAME),enable,disable-x509-alt-username)-ssl \
