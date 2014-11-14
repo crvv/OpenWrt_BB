@@ -13,6 +13,4 @@ start() {
 
     stop() {
         service_stop /usr/bin/ss-redir
-        }
     }
-}
