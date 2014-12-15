@@ -19,24 +19,24 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/shadowsocks-libev/Default
   SECTION:=net
-    CATEGORY:=Network
-	  TITLE:=Lightweight Secured Socks5 Proxy
-	    URL:=https://github.com/madeye/shadowsocks-libev
-		endef
+  CATEGORY:=Network
+  TITLE:=Lightweight Secured Socks5 Proxy
+  URL:=https://github.com/madeye/shadowsocks-libev
+endef
 
 define Package/shadowsocks-libev
   $(call Package/shadowsocks-libev/Default)
-    TITLE+= (OpenSSL)
-	  VARIANT:=openssl
-	    DEPENDS:=+libopenssl
-		endef
+  TITLE+= (OpenSSL)
+  VARIANT:=openssl
+  DEPENDS:=+libopenssl
+endef
 
 define Package/shadowsocks-libev-polarssl
   $(call Package/shadowsocks-libev/Default)
-    TITLE+= (PolarSSL)
-	  VARIANT:=polarssl
-	    DEPENDS:=+libpolarssl
-		endef
+  TITLE+= (PolarSSL)
+  VARIANT:=polarssl
+  DEPENDS:=+libpolarssl
+endef
 
 define Package/shadowsocks-libev/description
 Shadowsocks-libev is a lightweight secured scoks5 proxy for embedded devices and low end boxes.
@@ -49,16 +49,16 @@ define Package/shadowsocks-libev/conffiles
 endef
 
 ifeq ($(BUILD_VARIANT),polarssl)
-		CONFIGURE_ARGS += --with-crypto-library=polarssl
-	endif
+	CONFIGURE_ARGS += --with-crypto-library=polarssl
+endif
 
 define Package/shadowsocks-libev/install
 	$(INSTALL_DIR) $(1)/etc/init.d
-		$(INSTALL_CONF) ./files/shadowsocks.json $(1)/etc
-			$(INSTALL_BIN) ./files/shadowsocks.init $(1)/etc/init.d/shadowsocks
-				$(INSTALL_DIR) $(1)/usr/bin
-					$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-{local,redir,tunnel} $(1)/usr/bin
-					endef
+	$(INSTALL_CONF) ./files/shadowsocks.json $(1)/etc
+	$(INSTALL_BIN) ./files/shadowsocks.init $(1)/etc/init.d/shadowsocks
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-{local,redir,tunnel} $(1)/usr/bin
+endef
 
 Package/shadowsocks-libev-polarssl/install=$(Package/shadowsocks-libev/install)
 
