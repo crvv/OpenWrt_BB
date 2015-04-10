@@ -1,4 +1,6 @@
 Add Shadowsocks-libev v2.1.4, default ss-redir
 Add ShadowVPN v0.1.6
+odhcpd version 2015-04-10
 Change odhcpd's config file /etc/config/dhcp to /etc/config/odhcpd
-odhcpd version 2015-03-02
+
+Change Netgear wndr3700v4(4300)'s nand layout to use all 128MB space
